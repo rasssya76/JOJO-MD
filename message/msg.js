@@ -385,7 +385,7 @@ _Yakin kamu mau daftar ke premium?_
 			    reply(runtime(process.uptime()))
 			    break
 case prefix+'groupjojo':
-  reply("Group 1\n\nhttps://chat.whatsapp.com/Chvc5ptPYDgJcxJxp5zbIc\nGroup 2\n\nhttps://chat.whatsapp.com/DqM488U5RvmGpsbTMfDbMv\nCobain Bot Telegram yuk!\nhttps://t.me/bot?start=help")
+  reply("Group 1\n\nhttps://chat.whatsapp.com/KTm4p53s6457qcV5aDOAPI\nGroup 2\n\nhttps://chat.whatsapp.com/DqM488U5RvmGpsbTMfDbv\nCobain Bot Telegram yuk!\nhttps://t.me/bot?start=help")
   break
 			case prefix+'speed':
 			    let timestamp = speed();
@@ -922,7 +922,7 @@ case prefix+'join':
         }
         limitAdd(sender, limit)
         break
-        case 'joinn': {
+        case prefix+'joinn':
                 if (!isOwner) return reply('bukan owner 😂')
                 if (!text) throw 'Masukkan Link Group!'
                 if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'                 
@@ -1949,10 +1949,10 @@ case prefix+'logowolf2':
 			default:
 			if (isGroup && isCmd) {
 				var but = [{buttonId: `/menu`, buttonText: { displayText: "MENU" }, type: 1 }]
-conn.sendMessage(from, { text: "Maaf Command Belum Tersedia, Coba Beberapa Hari Kedepan Ya_^", buttons: but, footer: "Lihat Lebih Di Menu", templateButtons: but }, {quoted: msg})
+conn.sendMessage(from, { text: "Maaf Command Tersebut tidak Ada di Daftar Menu ^_^", buttons: but, footer: "Lihat Lebih Di Menu", templateButtons: but }, {quoted: msg})
 			}
 			if (!isGroup && isCmd) {
-				reply("Maaf Command Belum Tersedia, Coba Beberapa Hari Kedepan Ya_^")
+				reply("Maaf Command Tersebut tidak Ada di Daftar Menu ^_^")
 			}
 		}
 	} catch (err) {
