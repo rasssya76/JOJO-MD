@@ -922,6 +922,14 @@ case prefix+'join':
         }
         limitAdd(sender, limit)
         break
+        case 'joinn': {
+                if (!isOwner) return reply('bukan owner 😂')
+                if (!text) throw 'Masukkan Link Group!'
+                if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'                 
+                let result = args[0].split('https://chat.whatsapp.com/')[1]
+                await conn.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+            }
+          break  
 //game & fun menu
 //suit menu
 case prefix+'suit':

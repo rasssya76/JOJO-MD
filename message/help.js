@@ -193,6 +193,7 @@ exports.allmenu = (sender, prefix, pushname, isOwner, isPremium, balance, limit,
   ❍⃝⃘۪۪۪‌≻${prefix}setppbot
   ❍⃝⃘۪۪۪‌≻${prefix}exif
   ❍⃝⃘۪۪۪‌≻${prefix}leave
+  ❍⃝⃘۪۪۪‌≻${prefix}joinn
   ❍⃝⃘۪۪۪‌≻${prefix}addprem
   ❍⃝⃘۪۪۪‌≻${prefix}delprem
 
