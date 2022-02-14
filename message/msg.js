@@ -272,7 +272,7 @@ module.exports = async(conn, msg, m, setting) => {
 		    tebakgambar.splice(getGamePosi(from, tebakgambar), 1)
 		  }
 		}
-if (chats.startsWith("@6288213292687")){
+if (chats.startsWith("@6281515589573")){
    conn.sendMessage(from, { audio: {url : `https://d.top4top.io/m_22231oj7h1.mp3`}, mimetype: 'audio/mp4', ptt: true}, {quoted: msg})
 }
 if (chats.startsWith("eh")){
@@ -921,15 +921,7 @@ case prefix+'join':
             conn.reply(i, `*[ JOIN GRUP ]*\nLink nya : ${q}`, msg)
         }
         limitAdd(sender, limit)
-        break
-        case prefix+'joinn':
-                if (!isOwner) return reply('bukan owner 😂')
-                if (!text) throw 'Masukkan Link Group!'
-                if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'                 
-                let result = args[0].split('https://chat.whatsapp.com/')[1]
-                await conn.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-            }
-          break  
+        break         
 //game & fun menu
 //suit menu
 case prefix+'suit':
@@ -1358,7 +1350,7 @@ case prefix+'add':
                 break
 			case prefix+'transfer':
             case prefix+'tf':{
-                 if (args.length < 2) return reply(`Kirim perintah *${command}* @tag nominal\nContoh : ${command} @6288213292687 2000`)
+                 if (args.length < 2) return reply(`Kirim perintah *${command}* @tag nominal\nContoh : ${command} @6281515589573 2000`)
                  if (mentioned.length == 0) return reply(`Tag orang yang ingin di transfer balance`)
                  if (!args[2]) return reply(`Masukkan nominal nya!`)
                  if (isNaN(args[2])) return reply(`Nominal harus berupa angka!`)
