@@ -160,6 +160,7 @@ module.exports = async(conn, msg, m, setting) => {
 		       return conn.sendMessage(from, { document: doc, mimetype: mime, caption: caption }, options)
 		    }
 		}
+		/*
         async function sendPlay(from, query) {
            var url = await yts(query)
            url = url.videos[0].url
@@ -171,6 +172,7 @@ module.exports = async(conn, msg, m, setting) => {
                ownerNumber.map( i => conn.sendMessage(from, { text: `Send Play Error : ${e}` }))
            })
         }
+        */
 		const isUrl = (url) => {
 			return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 		}
@@ -561,13 +563,32 @@ case prefix+'groupjojo':
 			       limitAdd(sender, limit)
 				}).catch(() => reply(mess.error.api))
 		        break
-            case prefix+'play':
-			    if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
-                if (args.length < 2) return reply(`Kirim perintah ${command} query\nContoh : ${command} monokrom`)
-                reply(mess.wait)
-                await sendPlay(from, q)
-				limitAdd(sender, limit)
-                break
+            case prefix+'play': case prefix+'song':
+ 		if (args.length === 0) return reply(`Kirim perintah *${prefix}play* _Judul lagu_`)
+			var srch = args.join(' ')
+			aramas = await yts(srch);
+			aramat = aramas.all 
+			var mulaikah = aramat[0].url
+			try {
+				hxz.Youtube(mulaikah).then(async (data) => {
+					if (Number(data.medias[7].formattedSize) >= 100000) return sendMediaURL(from, thumb, `*PLAY MUSIC*\n\n*Title* : ${title}\n*Ext* : MP3\n*Filesize* : ${filesizeF}\n*Link* : ${a.data}\n\n_Untuk durasi lebih dari batas disajikan dalam bentuk link_`)
+						const captions = `*---- 「 PLAY MUSIC 」----*
+						
+• Title : ${aramas.videos[0].title}
+• ID : ${aramas.videos[0].videoId}
+• Upload : ${aramas.videos[0].ago}
+• Size : ${data.medias[7].formattedSize}
+• Views: ${aramas.videos[0].views} 
+• Duration : ${aramas.videos[0].timestamp}
+• Url : ${aramas.videos[0].url}`
+var thumbyt = await getBuffer(aramas.videos[0].thumbnail)
+sendButLocation(from, captions, 'BOT', thumbyt, [{buttonId: `.ytmp4 ${mulaikah}`, buttonText: {displayText: 'Video'}, type: 1},{buttonId: `.ytmp3 ${mulaikah}`, buttonText:{displayText: 'Audio'}, type: 1}], {quoted: mek})
+						})
+				} catch (err) {
+					reply('Terjadi kesalahan')
+					}
+			
+             break
 case prefix+'ytmp4': case prefix+'mp4':
 			    if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply (`Limit kamu sudah habis silahkan kirim ${prefix}limit untuk mengecek limit`)
 			    if (args.length < 2) return reply(`Kirim perintah ${command} link`)
@@ -1537,8 +1558,8 @@ case prefix+'hentai':
    var data = await getBuffer(`https://hardianto.xyz/api/anime/random?nsfw=hentai&apikey=${keyanto}`)
 				var but = [{buttonId: `/hentai`, buttonText: { displayText: "Kirim Hentai Lagi" }, type: 1 }]
 				conn.sendMessage(from, { caption: "Hentai For Premium", image: { url: `https://hardianto.xyz/api/anime/random?nsfw=hentai&apikey=${keyanto}` }, buttons: but, footer: 'Pencet tombol dibawah untuk foto selanjutnya' }, { quoted: msg })
-				break
-				
+				break	
+/*							
 case prefix+'yuri':
 case prefix+'anal'
 if (!isPremium)return reply("Perintah Ini Khusus Pengguna Premium, Upgrade Fitur Premium Ke Owner, Ketik !owner")
@@ -1548,6 +1569,7 @@ var but = [{buttonId: `/yuri`, buttonText: { displayText: "Kirim Hentai Lagi" },
 conn.sendMessage(from, { caption: "Fiture For Premium", image: { url: `https://hardianto.xyz/api/anime/random?nsfw=${command}&apikey=${keyanto}` }, buttons: but, footer: 'Pencet tombol dibawah untuk foto selanjutnya' }, { quoted: msg })
 break
 
+*/
 case prefix+'joinn': {
                if (!isPremium)return reply("Perintah Ini Khusus Pengguna Premium, Upgrade Fitur Premium Ke Owner, Ketik !owner")  
                 if (!text) throw 'Masukkan Link Group!'
